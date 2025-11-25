@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Portfolio Creator</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>AlgoSphere</h1>
+    <div class="controls">
+      <label for="themeSelect">Theme</label>
+      <select id="themeSelect">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="blue">Blue</option>
+        <option value="warm">Warm</option>
+      </select>
+
+      <label for="templateSelect">Template</label>
+      <select id="templateSelect">
+        <option value="modern">Modern</option>
+        <option value="minimal">Minimal</option>
+        <option value="developer">Developer</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="left">
+      <form id="dataForm">
+        <h2>Enter your details</h2>
+
+        <label>Name *</label>
+        <input id="name" required placeholder="Your full name">
+
+        <label>Role / Title *</label>
+        <input id="title" placeholder="Frontend Developer">
+
+        <label>Upload Photo</label>
+        <input id="photo" type="file" accept="image/*">
+
+        <label>Bio (leave empty for AI auto-gen)</label>
+        <textarea id="bio" rows="3" placeholder="Short professional bio"></textarea>
+
+        <label>Skills (comma separated)</label>
+        <input id="skills" placeholder="HTML, CSS, JavaScript">
+
+        <label>Projects (format: name|short desc separated by ;; )</label>
+        <input id="projects" placeholder="Portfolio|A personal website;;Weather App|Fetches weather">
+
+        <label>Experience (format: company|role|years separated by ;; )</label>
+        <input id="experience" placeholder="Acme Corp|Frontend Dev|2020-2023">
+
+        <label>Education (format: degree|place|year separated by ;; )</label>
+        <input id="education" placeholder="BSc CS|University X|2019">
+
+        <label>Social Links (comma separated URLs)</label>
+        <input id="socials" placeholder="https://github.com/you, https://linkedin.com/in/you">
+
+        <div class="actions">
+          <button id="aiGen" type="button">Auto-generate (AI-like)</button>
+          <button id="generate" type="submit">Generate</button>
+        </div>
+
+        <p class="hint">Optional: paste an OpenAI API key in the settings below to use real GPT (see instructions in script.js).</p>
+
+        <details>
+          <summary>Advanced / OpenAI (optional)</summary>
+          <label>OpenAI API Key (sk-...)</label>
+          <input id="openaiKey" placeholder="Paste API key to enable GPT generation (optional)">
+          <small>When set, pressing <em>Auto-generate</em> will call OpenAI to produce a professional bio & project descriptions. (Usage billed to your key.)</small>
+        </details>
+      </form>
+
+      <div class="download-actions">
+        <button id="downloadHtml" disabled>Download HTML</button>
+        <button id="downloadPdf" disabled>Download PDF</button>
+      </div>
+    </section>
+
+    <section class="right">
+      <h2>Preview</h2>
+      <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made for you — enter details, choose theme & template, then generate. Works fully in-browser.</small>
+  </footer>
+
+
+  <script src="script.js" defer></script>
+</body>
+</html>
